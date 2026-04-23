@@ -1,7 +1,11 @@
 import os
-import runpy
+import sys
+
+# Add backend to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'backend'))
+
+# Import Flask app from backend
+from app import app
 
 if __name__ == "__main__":
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    backend_app = os.path.join(current_dir, "backend", "app.py")
-    runpy.run_path(backend_app, run_name="__main__")
+    app.run(host='0.0.0.0', debug=True)
